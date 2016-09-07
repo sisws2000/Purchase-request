@@ -1,0 +1,155 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="purchaseOrder.master.cs"
+    Inherits="ProjectWithMasterPageCS_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Purchase Order processing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="purchaseRequest.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        #stageTwo, #stageThree, #stageOne {
+            /*margin-top:0px;*/
+            margin-left: 400px;
+            width: 1170px;
+            height: 830px;
+            background-color: white;
+            margin-bottom: 30px;
+            padding: 0;
+            border-radius: 15px;
+        }
+
+        .modal {
+            margin-top: 122px;
+        }
+
+        .footer {
+            position: absolute;
+            width: 100%;
+            margin-bottom: 0;
+            height: 100px; /* Height of the footer */
+            background: #333;
+            text-align: center;
+        }
+
+        #footer {
+            bottom: 0;
+        }
+
+        .footer a {
+            color: white;
+        }
+
+        #mainBody .stepContainer .StepTitle {
+            display: block;
+            position: relative;
+            margin-top: 5px;
+            margin-left: 20px;
+            padding: 5px;
+            font: bold 18px Verdana, Arial, Helvetica, sans-serif;
+            color: grey;
+            background-color: #f3f2f7;
+            clear: both;
+            text-align: left;
+            z-index: 88;
+            width: 1105px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+        }
+
+        .stageTable {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0;
+            width: 1170px;
+        }
+
+        .actionBar {
+            margin-bottom: 10px;
+            padding: 0;
+            color: #5A5655;
+            /*height: 40px;*/
+            text-align: left;
+            overflow: auto;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            left: 0;
+            z-index: 14;
+        }
+
+        #anchor {
+            margin-left: 20px;
+        }
+
+        #navHeader ul {
+            margin-left: 400px;
+        }
+
+        #navHeader {
+            background-color: black;
+        }
+
+        #btnSubmitRequest {
+            margin-left: 30px;
+            margin-top: 30px;
+        }
+
+        .catalogGridView {
+            margin-left: 100px;
+        }
+
+            #catalogGridView tr {
+                align-content: center;
+                grid-row-sizing: 20px;
+            }
+
+        #modal-content {
+            margin-top: 100px;
+        }
+
+        #shippingAtt {
+            border: 0;
+            padding: 20px;
+            margin-right: 10px;
+            margin-bottom: 30px;
+            width: 1054px;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div>
+                <nav class="navbar navbar-inverse navbar-fixed-top" id="navHeader">
+                    <div id="navbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="homePage.aspx">Home</a></li>
+                            <li><a href="#" data-toggle="modal" data-dismiss="modal" data-target="#stageOne">New Request</a></li>
+                            <li><a href="viewRequest.aspx">View Request</a></li>
+                            <li><a href="vendorCatalog.aspx" id="vendorCatalog">Vendor Catalog </a></li>
+                            <li><a href="#">Request Approval</a></li>
+                            <li><a href="#">Request Status</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div id="companyLogo">
+                <img src="../homePage/homePage/logo3.png" alt="HAHA PRINTING" />
+            </div>
+
+            <asp:ContentPlaceHolder ID="mainContentPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
+    </form>
+</body>
+</html>
+

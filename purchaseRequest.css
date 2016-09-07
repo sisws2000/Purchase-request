@@ -1,0 +1,909 @@
+﻿/*   
+  SmartWizard 2.0 plugin 
+  jQuery Wizard control Plugin
+  by Dipu
+  
+  http://www.techlaboratory.net
+  http://tech-laboratory.blogspot.com
+*/
+
+
+/*CSS form the home page
+     =======================================================================================================
+ */
+body {
+    background-image: url('backgroundHome2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+div #mainBody {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    /*border: 0px solid #CCC;*/
+    overflow: visible;
+    float: left;
+    width: 1170px;
+    top: -7px;
+    left: 0px;
+    /*height: 812px;*/
+}
+
+#mainBody .stepContainer {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    /*border: 0 solid #CCC;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+    clear: both;
+    /*height: 500px;*/
+}
+
+    /*#mainBody .stepContainer .StepTitle {
+        display: block;
+        position: relative;
+        margin-top: 5px;
+        margin-left: 20px;
+        padding: 5px;
+        font: bold 18px Verdana, Arial, Helvetica, sans-serif;
+        color: grey;
+        background-color: #f3f2f7;
+        clear: both;
+        text-align: left;
+        z-index: 88;
+        width: 1105px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+    }*/
+
+#mainBody ul.anchor, #lblRequest {
+    position: relative;
+    display: block;
+    float: left;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    clear: both;
+    border: 0 solid #CCCCCC;
+    background: transparent; /*#EEEEEE */
+}
+
+    #mainBody ul.anchor li {
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 0 3px;
+        border: 0 solid #E0E0E0;
+        float: left;
+    }
+
+        #mainBody ul.anchor li a {
+            display: block;
+            position: relative;
+            float: left;
+            margin: 5px 0 0 0;
+            padding: 3px;
+            height: 60px;
+            width: 230px;
+            text-decoration: none;
+            outline-style: none;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            z-index: 99;
+        }
+
+            #mainBody ul.anchor li a .stepNumber {
+                position: relative;
+                float: left;
+                width: 30px;
+                text-align: center;
+                padding: 0 5px 5px;
+                font: bold 45px Verdana, Arial, Helvetica, sans-serif;
+            }
+
+            #mainBody ul.anchor li a .stepDesc {
+                position: relative;
+                display: block;
+                float: left;
+                text-align: left;
+                padding: 5px;
+                font: bold 20px Verdana, Arial, Helvetica, sans-serif;
+            }
+
+                #mainBody ul.anchor li a .stepDesc small {
+                    font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+                }
+
+            #mainBody ul.anchor li a.selected {
+                color: #F8F8F8;
+                background: #5A5655; /* EA8511 */
+                /*border: 1px solid #EA8511;*/
+                cursor: text;
+                -moz-box-shadow: 5px 5px 8px #888;
+                -webkit-box-shadow: 5px 5px 8px #888;
+                box-shadow: 5px 5px 8px #888;
+            }
+
+            /*#mainBody ul.anchor li a.selected:hover {
+                    color: #F8F8F8;
+                    background: #EA8511;
+                    border:1px solid white;
+                }*/
+
+            #mainBody ul.anchor li a.done {
+                position: relative;
+                color: #FFF;
+                background: #8CC63F;
+                border: 1px solid #8CC63F;
+                z-index: 99;
+            }
+
+                #mainBody ul.anchor li a.done:hover {
+                    color: #5A5655;
+                    background: #8CC63F;
+                    border: 1px solid #5A5655;
+                }
+
+            #mainBody ul.anchor li a.disabled {
+                color: #CCCCCC;
+                background: #F8F8F8;
+                border: 1px solid #CCC;
+                cursor: text;
+            }
+
+                #mainBody ul.anchor li a.disabled:hover {
+                    color: #CCCCCC;
+                    background: #F8F8F8;
+                }
+
+            #mainBody ul.anchor li a.error {
+                color: #6c6c6c !important;
+                background: #f08f75 !important;
+                border: 1px solid #fb3500 !important;
+            }
+
+                #mainBody ul.anchor li a.error:hover {
+                    color: #000 !important;
+                }
+
+#mainBody .buttonNext {
+    display: block;
+    float: left;
+    margin: 5px 3px 0 3px;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    width: 100px;
+    color: #FFF;
+    outline-style: none;
+    background-color: #5A5655;
+    border: 1px solid #5A5655;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#mainBody .buttonDisabled {
+    color: #F8F8F8 !important;
+    background-color: #CCCCCC !important;
+    border: 1px solid #CCCCCC !important;
+    cursor: text;
+}
+
+#mainBody .buttonPrevious {
+    display: block;
+    float: left;
+    margin: 5px 3px 0 400px;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    width: 100px;
+    color: #FFF;
+    outline-style: none;
+    background-color: #5A5655;
+    border: 1px solid #5A5655;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#mainBody .buttonFinish {
+    display: block;
+    float: left;
+    margin: 5px 10px 0 3px;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    width: 100px;
+    color: #FFF;
+    outline-style: none;
+    background-color: #5A5655;
+    border: 1px solid #5A5655;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+/* Form Styles */
+
+.txtBox {
+    border: 1px solid #CCCCCC;
+    color: #5A5655;
+    font: 13px Verdana,Arial,Helvetica,sans-serif;
+    padding: 2px;
+    width: 430px;
+}
+
+    .txtBox:focus {
+        border: 1px solid #EA8511;
+    }
+
+#mainBody .loader {
+    position: relative;
+    display: none;
+    float: left;
+    margin: 2px 0 0 2px;
+    padding: 8px 10px 8px 40px;
+    border: 1px solid #FFD700;
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #5A5655;
+    background: #FFF url(../images/loader.gif) no-repeat 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    z-index: 998;
+}
+
+/*#mainBody .msgBox {
+    position: relative;
+    display: none;
+    float: left;
+    margin: 4px 0 0 5px;
+    padding: 5px;
+    border: 1px solid #FFD700;
+    background-color: #FFFFDD;
+    font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+    color: #5A5655;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    z-index: 999;
+    min-width: 200px;
+}*/
+
+.msgBox #close {
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    color: #CCC;
+    display: block;
+    float: right;
+    margin: 0 0 0 5px;
+    outline-style: none;
+    padding: 0 2px 0 2px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+div #close {
+    text-decoration: none;
+    float: right;
+    font: bold 18px Verdana, Arial, Helvetica, sans-serif;
+    color: #888;
+}
+
+div #toHome {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font: normal 18px Verdana,Arial,Helvetica,sans-serif;
+    padding: 15px 40px;
+    background-color: #069906;
+}
+
+    div #toHome:hover {
+        color: black;
+        font-weight: bold;
+    }
+
+#backToHome {
+    float: right;
+    margin-top: 100px;
+    margin-right: 400px;
+}
+
+/*CSS for Stage-1 to Stage-3 popup
+    =============================================================================================
+    =============================================================================================
+*/
+/*.modal-content, .stageThree {
+    background-color:#f7f7f7;
+    border:1px solid lightgrey;
+}*/
+#mainBody {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0px solid #CCC;
+    overflow: visible;
+    height: 726px;
+    width: 1170px; /*width control*/
+    /*background-image:url("popupBg.png");*/
+    z-index: 12;
+}
+
+#mainBody .stepContainer {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: 0 solid #CCC;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    clear: both;
+    height: 611px;
+    top: -7px;
+    left: 0px;
+}
+
+    #mainBody .stepContainer .content {
+        display: block;
+        position: absolute;
+        padding: 5px;
+        font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+        /*background-color: #f7f7f7;*/
+        height: 598px;
+        text-align: left;
+        overflow: visible;
+        z-index: 13;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        width: 1145px;
+        clear: both;
+    top: 2px;
+    left: 0px;
+}
+
+.actionBar {
+    /*position: relative;
+    top: 5px;*/
+    margin-bottom:5px;
+    padding: 0;
+    color: #5A5655;
+    height: 44px;
+    text-align: left;
+    overflow: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    left: 0;
+    z-index: 14;
+}
+
+#mainBody ul.anchor, #lblRequest {
+    position: relative;
+    display: block;
+    float: left;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    clear: both;
+    border: 0 solid #CCCCCC;
+    background: transparent; /*#EEEEEE */
+}
+
+    #mainBody ul.anchor li {
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 0 3px;
+        border: 0 solid #E0E0E0;
+        float: left;
+        z-index: 13;
+    }
+        /* Anchor Element Style */
+        #mainBody ul.anchor li a {
+            display: block;
+            position: relative;
+            float: left;
+            margin: 5px 0 0 0;
+            padding: 3px;
+            height: 60px;
+            width: 230px;
+            text-decoration: none;
+            outline-style: none;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            z-index: 13;
+        }
+
+            #mainBody ul.anchor li a .stepNumber {
+                position: relative;
+                float: left;
+                width: 30px;
+                text-align: center;
+                padding: 0 5px 5px;
+                font: bold 45px Verdana, Arial, Helvetica, sans-serif;
+            }
+
+            #mainBody ul.anchor li a .stepDesc {
+                position: relative;
+                display: block;
+                float: left;
+                text-align: left;
+                padding: 5px;
+                font: bold 20px Verdana, Arial, Helvetica, sans-serif;
+            }
+
+                #mainBody ul.anchor li a .stepDesc small {
+                    font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+                }
+
+            #mainBody ul.anchor li a.done {
+                position: relative;
+                color: #FFF;
+                background: #8CC63F;
+                border: 1px solid #8CC63F;
+                z-index: 13;
+            }
+
+                #mainBody ul.anchor li a.done:hover {
+                    color: #5A5655;
+                    background: #8CC63F;
+                    border: 1px solid #5A5655;
+                }
+
+            #mainBody ul.anchor li a.disabled {
+                color: #CCCCCC;
+                background: #F8F8F8;
+                border: 1px solid #CCC;
+                cursor: text;
+            }
+
+                #mainBody ul.anchor li a.disabled:hover {
+                    color: #CCCCCC;
+                    background: #F8F8F8;
+                }
+
+            #mainBody ul.anchor li a.error {
+                color: #6c6c6c !important;
+                background: #f08f75 !important;
+                border: 1px solid #fb3500 !important;
+            }
+
+                #mainBody ul.anchor li a.error:hover {
+                    color: #000 !important;
+                }
+
+#mainBody .buttonDisabled {
+    color: #F8F8F8 !important;
+    background-color: #CCCCCC !important;
+    border: 1px solid #CCCCCC !important;
+    cursor: text;
+}
+
+.txtBox {
+    border: 1px solid #CCCCCC;
+    color: #5A5655;
+    font: 13px Verdana,Arial,Helvetica,sans-serif;
+    padding: 2px;
+    width: 430px;
+}
+
+    .txtBox:focus {
+        border: 1px solid #EA8511;
+    }
+
+#close {
+    color: #848180;
+    border: 1px solid #848180;
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.stepContainer .inputSection {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 14px;
+    /*color:white;*/
+}
+
+#clickForJustify:hover, #clickForItemList:hover {
+    cursor: pointer;
+}
+
+#clickForJustify, #clickForItemList {
+    /*margin-left:550px;*/
+    padding: 5px;
+    text-align: center;
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    width: 100px;
+    color: #FFF;
+    outline-style: none;
+    background-color: #5A5655;
+    border: 1px solid #5A5655;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#clickForItemList {
+    margin-left: 10px;
+}
+/*#itemDetailInput {
+    position:absolute;
+    top:300px;
+    left:800px;
+    width: 310px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: lightgray;
+    z-index:15;
+   display:none;
+}*/
+
+#inputForm {
+    align-content: center;
+    padding: 10px;
+    margin-right: 20px;
+    text-align: right;
+}
+
+#inputHead {
+    padding: 5px;
+    border-bottom: 1px solid #b7b2b2;
+}
+
+div #toHome:hover {
+    color: black;
+    font-weight: bold;
+}
+
+#backToHome {
+    position: absolute;
+    top: 800px;
+    left: 1200px;
+    z-index: 15;
+}
+
+div #toHome {
+    text-decoration: none;
+    color: white;
+    font: normal 18px Verdana,Arial,Helvetica,sans-serif;
+    padding: 15px 40px;
+    background-color: #069906;
+    border: 1px solid #069906;
+}
+
+#inputDetailClose, #inputOk {
+    color: #848180;
+    border: 1px solid #848180;
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+}
+
+    #inputDetailClose:hover, .msgBox #close:hover, #inputOk:hover {
+        color: black;
+        border: 1px solid black;
+    }
+
+#inputOk {
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.closeStage button {
+    color: black;
+}
+
+.inputSection input, .inputSection textarea, .inputSection select {
+    /*border-radius:5px;*/
+    /*background-color:white;*/
+    margin-top: 5px;
+    color: black;
+    /*border-color:lightgrey;*/
+}
+
+.inputSection input, .inputSection select {
+    /*height:30px;*/
+    /*color:black;*/
+}
+
+.inputSection option {
+    color: black;
+}
+
+#submitOrCancel a {
+    color: #FFF;
+    background-color: #5A5655;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 40px;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+    #submitOrCancel a:hover {
+        background-color: black;
+    }
+
+#okRequestSubmission {
+    margin-right: 25px;
+}
+
+#confirmSubmission, #confirmation {
+    background-color: #e5dedc;
+    width: 450px;
+    height: 200px;
+    margin-left: 800px;
+    margin-top: 310px;
+    border-radius: 10px;
+}
+
+    #confirmSubmission p {
+        margin-top: 75px;
+        margin-left: 60px;
+        font-size: 1.3em;
+    }
+
+    #confirmation p {
+        margin-top: 70px;
+        margin-left: 30px;
+        font-size: 1.3em;
+    }
+
+.confirmation button {
+    color: black;
+}
+
+#itemsListSelection {
+    margin-top: 230px;
+}
+
+#itemsList select {
+    margin-left: 100px;
+    margin-right: 40px;
+    border-radius: 5px;
+    height: 300px;
+    /*font-size:16px;*/
+}
+
+#selectedItems {
+    margin-left: 40px;
+}
+
+#addRemove {
+    margin-top: 100px;
+}
+
+    #addRemove a, #confirmation a {
+        text-decoration: none;
+        color: black;
+        padding: 5px;
+        background-color: lightgray;
+        border-radius: 3px;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+
+#confirmation a {
+    margin-left: 200px;
+}
+/*#confirmation p {
+    margin-top:
+}*/
+#selectedItems, #itemsListOptions {
+    width: 200px;
+    height: 300px;
+    background-color: lightgrey;
+    font-size: 16px;
+}
+
+#itemsListSelection {
+    width: 740px;
+    height: 800px;
+}
+
+.itemsList {
+    float: left;
+    display: inline-block;
+    border-radius: 10px;
+    height: 300px;
+}
+
+#itemsInList, #itemsSelected {
+    color: lightgrey;
+    margin-left: 100px;
+    font-size: 14px;
+}
+
+#itemsSelected {
+    margin-left: 40px;
+}
+
+#workRequest {
+    margin-right: 60px;
+}
+
+#requestorInfo, #requestDetail {
+    border: 1px solid lightgrey;
+    padding: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: 1054px;
+}
+
+
+.inputSection label {
+    color: #198cd3;
+    font-weight: lighter;
+}
+
+.inputSection input {
+}
+
+#itemInsertTable input {
+    margin: 0;
+    border: 0;
+}
+
+#inputTable {
+    margin-left: 100px;
+}
+
+#navHeader {
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 5px;
+    border-radius: 0;
+    margin-top: 0;
+    z-index: 1;
+}
+
+    #navHeader a {
+        font-size: 1.5em;
+        margin-right: 2px;
+        padding-bottom: 2px;
+    }
+
+    #navHeader ul {
+        margin-left: 300px;
+    }
+
+#companyLogo img {
+    position: relative;
+    margin-top: -120px;
+    margin-left: 40px;
+    width: 300px;
+    z-index: 5;
+}
+
+#homeFooter {
+    background-color: lightgrey;
+    height: 60px;
+    border: 0;
+    text-align: center;
+    border-top: 1px solid grey;
+}
+
+    #homeFooter a {
+        text-decoration: none;
+        color: black;
+    }
+
+#bgButtons {
+    width: 1500px;
+    margin-top: 300px;
+    margin-left: 260px;
+    background-color: transparent;
+}
+
+    #bgButtons button {
+        width: 320px;
+        height: 100px;
+        font-size: 2em;
+        margin: 10px;
+        color: white;
+        border-radius: 20px;
+        /*opacity:0.6;*/
+    }
+
+        #bgButtons button:hover {
+            opacity: 1;
+        }
+
+.stageNumber {
+    font-weight: bold;
+    font-size: 4em;
+    padding: 0;
+}
+
+.stageName {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+#btnStage1 {
+    padding: 0;
+    box-shadow: 5px 5px 8px #888;
+}
+
+#modal-content {
+    width: 1200px;
+    margin-left: -300px;
+    /*margin-top: -100px;*/
+}
+
+.btnStage {
+    width: 220px;
+    height: 70px;
+}
+
+.closeStage {
+    padding: 10px 20px 30px 20px;
+}
+
+#myFormContainer {
+    width: 700px;
+}
+
+#jstClick {
+    background-color: black;
+    color: lightgrey;
+}
+
+#homeDescription {
+    border-bottom: 1px solid lightgrey;
+    width: 800px;
+    margin-top: 80px;
+    align-content: center;
+}
+
+    #homeDescription p {
+        color: lightgrey;
+        font-size: 1.2em;
+    }
+
+#itemInsertTable th {
+    text-align: center;
+    background-color: #edeaea;
+}
+
+    #itemInsertTable th label {
+        font-weight: bold;
+    }
+
+#itemInsertTable table, #itemInsertTable th, #itemInsertTable td {
+    border: 1px solid lightgrey;
+}
+
+input.check, input#checkAll {
+    width: 1.5em;
+}
+
+/*#stageOne {
+    margin-top: -100px;
+    width: 1170px;
+}
+
+.stageTable {
+    margin: 0;
+    padding:0;
+    width:1170px;
+}*/
+
+/*.container {
+    width: 1170px;
+    background-color: white;
+}*/
+
+/*#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; 
+    background: #6cf;
+}*/
